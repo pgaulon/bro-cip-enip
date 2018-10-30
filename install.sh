@@ -23,8 +23,6 @@ path=$1
 files="scripts/test-all-policy.bro
 scripts/base/init-default.bro
 src/analyzer/protocol/CMakeLists.txt
-README.md
-install.sh
 "
 
 dirs="
@@ -42,11 +40,7 @@ src/analyzer/protocol/cip/
 
 for varname in $dirs
 do
-    if [ ! -d $path$varname ]; then
-	echo "Creating $path$varname"
-	mkdir -p $path$varname
-    fi
-    cpy=$path$varname..
+    cpy=$path$varname
     echo "Copying files from $varname"
     echo "    to $path$varname"
     cp -r $varname $cpy
