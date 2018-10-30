@@ -1,7 +1,7 @@
 # This file loads ALL policy scripts that are part of the Bro distribution.
-#
+# 
 # This is rarely makes sense, and is for testing only.
-#
+# 
 # Note that we have a unit test that makes sure that all policy files shipped are
 # actually loaded here. If we have files that are part of the distribution yet
 # can't be loaded here,  these must still be listed here with their load command
@@ -9,12 +9,13 @@
 
 # The base/ scripts are all loaded by default and not included here.
 
-# @load frameworks/communication/listen.bro
 # @load frameworks/control/controllee.bro
 # @load frameworks/control/controller.bro
 @load frameworks/dpd/detect-protocols.bro
 @load frameworks/dpd/packet-segment-logging.bro
 @load frameworks/intel/do_notice.bro
+@load frameworks/intel/do_expire.bro
+@load frameworks/intel/whitelist.bro
 @load frameworks/intel/seen/__load__.bro
 @load frameworks/intel/seen/conn-established.bro
 @load frameworks/intel/seen/dns.bro
@@ -29,8 +30,12 @@
 @load frameworks/intel/seen/where-locations.bro
 @load frameworks/intel/seen/x509.bro
 @load frameworks/files/detect-MHR.bro
+@load frameworks/files/entropy-test-all-files.bro
 #@load frameworks/files/extract-all-files.bro
 @load frameworks/files/hash-all-files.bro
+@load frameworks/notice/__load__.bro
+@load frameworks/notice/extend-email/hostnames.bro
+@load files/x509/log-ocsp.bro
 @load frameworks/packet-filter/shunt.bro
 @load frameworks/software/version-changes.bro
 @load frameworks/software/vulnerable.bro
@@ -40,31 +45,26 @@
 @load integration/barnyard2/types.bro
 @load integration/collective-intel/__load__.bro
 @load integration/collective-intel/main.bro
-@load misc/app-stats/__load__.bro
-@load misc/app-stats/main.bro
-@load misc/app-stats/plugins/__load__.bro
-@load misc/app-stats/plugins/facebook.bro
-@load misc/app-stats/plugins/gmail.bro
-@load misc/app-stats/plugins/google.bro
-@load misc/app-stats/plugins/netflix.bro
-@load misc/app-stats/plugins/pandora.bro
-@load misc/app-stats/plugins/youtube.bro
 @load misc/capture-loss.bro
 @load misc/detect-traceroute/__load__.bro
 @load misc/detect-traceroute/main.bro
 # @load misc/dump-events.bro
-@load misc/known-devices.bro
 @load misc/load-balancing.bro
 @load misc/loaded-scripts.bro
 @load misc/profiling.bro
 @load misc/scan.bro
 @load misc/stats.bro
+@load misc/weird-stats.bro
 @load misc/trim-trace-file.bro
 @load protocols/conn/known-hosts.bro
 @load protocols/conn/known-services.bro
+@load protocols/conn/mac-logging.bro
 @load protocols/conn/vlan-logging.bro
 @load protocols/conn/weirds.bro
-@load protocols/dhcp/known-devices-and-hostnames.bro
+#@load protocols/dhcp/deprecated_events.bro
+@load protocols/dhcp/msg-orig.bro
+@load protocols/dhcp/software.bro
+@load protocols/dhcp/sub-opts.bro
 @load protocols/dns/auth-addl.bro
 @load protocols/dns/detect-external-names.bro
 @load protocols/enip/detect-metasploit.bro
@@ -78,10 +78,13 @@
 @load protocols/http/software.bro
 @load protocols/http/var-extraction-cookies.bro
 @load protocols/http/var-extraction-uri.bro
+@load protocols/krb/ticket-logging.bro
 @load protocols/modbus/known-masters-slaves.bro
 @load protocols/modbus/track-memmap.bro
 @load protocols/mysql/software.bro
 @load protocols/rdp/indicate_ssl.bro
+#@load protocols/smb/__load__.bro
+@load protocols/smb/log-cmds.bro
 @load protocols/smtp/blocklists.bro
 @load protocols/smtp/detect-suspicious-orig.bro
 @load protocols/smtp/entities-excerpt.bro
@@ -98,6 +101,7 @@
 #@load protocols/ssl/notary.bro
 @load protocols/ssl/validate-certs.bro
 @load protocols/ssl/validate-ocsp.bro
+@load protocols/ssl/validate-sct.bro
 @load protocols/ssl/weak-keys.bro
 @load tuning/__load__.bro
 @load tuning/defaults/__load__.bro
