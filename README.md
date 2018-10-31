@@ -3,12 +3,12 @@ This repository contains the necessary files in order to inspect Ethernet/IP and
 Common Industrial Protocol packets with Bro.
 For the documentation, see:
 
-    * THE CIP NETWORKS LIBRARY Volume 1 Edition 3.3 November, 2007: http://www.tud.ttu.ee/im/Kristjan.Sillmann/ISP0051%20Rakenduslik%20Andmeside/CIP%20docs/CIP%20Vol1_3.3.pdf
-    * THE CIP NETWORKS LIBRARY Volume 2 Edition 1.4 November 2007: http://www.tud.ttu.ee/im/Kristjan.Sillmann/ISP0051%20Rakenduslik%20Andmeside/CIP%20docs/CIP%20Vol2_1.4.pdf
-    * Wireshark dissector: https://github.com/wireshark/wireshark/blob/0808f4c9584b309548996388aafde51820a68932/epan/dissectors/packet-enip.c
-      https://github.com/wireshark/wireshark/blob/0808f4c9584b309548996388aafde51820a68932/epan/dissectors/packet-enip.h
-      https://github.com/wireshark/wireshark/blob/0808f4c9584b309548996388aafde51820a68932/epan/dissectors/packet-cip.c
-      https://github.com/wireshark/wireshark/blob/0808f4c9584b309548996388aafde51820a68932/epan/dissectors/packet-cip.h
+    * THE CIP NETWORKS LIBRARY Volume 1 Edition 3.3 November, 2007: https://web.archive.org/web/20170829214405/http://www.tud.ttu.ee/im/Kristjan.Sillmann/ISP0051%20Rakenduslik%20Andmeside/CIP%20docs/CIP%20Vol1_3.3.pdf
+    * Wireshark dissector:
+      * https://github.com/boundary/wireshark/blob/master/epan/dissectors/packet-enip.c
+      * https://github.com/boundary/wireshark/blob/master/epan/dissectors/packet-enip.h
+      * https://github.com/boundary/wireshark/blob/master/epan/dissectors/packet-cip.c
+      * https://github.com/boundary/wireshark/blob/master/epan/dissectors/packet-cip.h
     * Programming Manual Logix5000 Data Access: http://literature.rockwellautomation.com/idc/groups/literature/documents/pm/1756-pm020_-en-p.pdf
 
 ## Installation ##
