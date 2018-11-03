@@ -20,36 +20,21 @@ fi
 
 path=$1
 
-files="scripts/test-all-policy.bro
-scripts/base/init-default.bro
-src/analyzer/protocol/CMakeLists.txt
-"
+find . -iname "*enip*" -type d -exec bash -c 'echo Executing: cp -r {} ../bro/$(dirname {})/' \;
+find . -iname "*enip*" -type d -exec bash -c 'cp -r {} ../bro/$(dirname {})/' \;
 
-dirs="
-scripts/base/protocols/enip/
-scripts/policy/protocols/enip/
-src/analyzer/protocol/enip/
-testing/btest/scripts/base/protocols/enip/
-testing/btest/scripts/policy/protocols/enip/
-testing/btest/Baseline/scripts.base.protocols.enip.*/
-testing/btest/Baseline/scripts.policy.protocols.enip.*/
-testing/btest/Traces/enip/
-scripts/base/protocols/cip/
-src/analyzer/protocol/cip/
-"
-
-for varname in $dirs
-do
-    cpy=$path$varname
-    echo "Copying files from $varname"
-    echo "    to $path$varname"
-    cp -r $varname $cpy
-done
-
-for varname in $files
-do
-    cpy=$path$varname
-    echo "Copying file $varname"
-    echo "    to $path$varname"
-    cp $varname $cpy
-done
+if [ $(grep -c enip $path/scripts/test-all-policy.bro) -eq 0 ]
+then
+	echo "Adding @load protocols/enip/detect-metasploit.bro to $path/scripts/test-all-policy.bro"
+	echo '@load protocols/enip/detect-metasploit.bro' >> $path/scripts/test-all-policy.bro
+fi
+if [ $(grep -c enip $path/scripts/base/init-default.bro) -eq 0 ]
+then
+	echo "Adding @load base/protocols/enip to $path/scripts/base/init-default.bro"
+	echo '@load base/protocols/enip' >> $path/scripts/base/init-default.bro
+fi
+if [ $(grep -c enip $path/src/analyzer/protocol/CMakeLists.txt) -eq 0 ]
+then
+	echo "Adding add_subdirectory(enip) to $path/src/analyzer/protocol/CMakeLists.txt"
+	echo 'add_subdirectory(enip)' >> $path/src/analyzer/protocol/CMakeLists.txt
+fi
