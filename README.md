@@ -24,15 +24,15 @@ You can download Zeek sources at https://www.zeek.org/, or by typing:
 Then, download this EtherNet/IP extension:
 
     $ cd ~
-    $ git clone https://github.com/pgaulon/bro-cip-enip.git
+    $ git clone https://github.com/pgaulon/zeek-cip-enip.git
 
-And go to this bro-cip-enip directory:
+And go to this zeek-cip-enip directory:
 
-    $ cd ~/bro-cip-enip
+    $ cd ~/zeek-cip-enip
 
 To install this EtherNet/IP Protocol Analyser, you can run:
 
-    $ ./install.sh </path/to/bro/directory/>
+    $ ./install.sh </path/to/zeek/directory/>
 
 For this example it would be:
 
@@ -45,17 +45,17 @@ Then, go to your Zeek directory and run:
 
 The last step is to add the Zeek binaries to your PATH environment variable:
 
-    $ export PATH=/usr/local/bro/bin:$PATH
+    $ export PATH=/usr/local/zeek/bin:$PATH
 
-You can also add it to your bashrc file to make it permanent, or use /usr/local/bro/bin directory if you don't want to change your PATH vriable.
+You can also add it to your bashrc file to make it permanent, or use /usr/local/zeek/bin directory if you don't want to change your PATH vriable.
 
 ### Troubleshooting ###
 
-Before compiling bro, be sure that the ./install.sh script worked well, and the files are copied in the right directory.
+Before compiling Zeek, be sure that the ./install.sh script worked well, and the files are copied in the right directory.
 You can see the output of this command to be sure:
 
-    $ find ~/bro -name enip
-    $ find ~/bro -name cip
+    $ find ~/zeek -name enip
+    $ find ~/zeek -name cip
 
 As Libcaf (C++ Actor Framework) is now a requirement to build Zeek, you may have some problems during the ./configure command, for instance the libcaf packet missing.
 If it is the case you have two solutions:
@@ -67,26 +67,26 @@ If it is the case you have two solutions:
 You can run Zeek with any of your .pcap files containing some Ethernet/IP
 traffic with the following command:
 
-    $ bro -r <file.pcap> [<bro-script.bro>]
+    $ zeek -r <file.pcap> [<zeek-script.zeek>]
 
 For instance, if you are in your Zeek directory:
 
     $ cd ~/zeek
-    $ bro -C -r testing/btest/Traces/enip/enip_metasploit.pcapng scripts/policy/protocols/enip/detect-metasploit.bro
+    $ zeek -C -r testing/btest/Traces/enip/enip_metasploit.pcapng scripts/policy/protocols/enip/detect-metasploit.zeek
 
 (-C means ignore the TCP checksums)
 
 And then take a look at the .log files and more precisely the enip.log file, and
-the notice.log file if you ran bro with a notice script.
+the notice.log file if you ran zeek with a notice script.
 
-You can also inspect live trafic from an interface using broctl (use the help command):
+You can also inspect live trafic from an interface using zeekctl (use the help command):
 
-    # broctl
-    # [BroControl] > help
+    # zeekctl
+    # [ZeekControl] > help
 
 or by typing:
 
-    # bro -i <iface1> -i <iface2> -i <iface3>
+    # zeek -i <iface1> -i <iface2> -i <iface3>
 
 See the full documentation at https://docs.zeek.org/en/stable/index.html.
 
@@ -124,7 +124,7 @@ testbed communications.
     * events.bif: there is only the general event cip_event and the event
       cip_message_request, in order to analyse each message request. The
       type of service, the size of the path and the path will be logged
-    * main.bro: this script only logs the service, the path size and the path
+    * main.zeek: this script only logs the service, the path size and the path
       when a message request packet is parsed
 
 This code compiles, but can't be executed. The main supposed reason, is that the
@@ -137,7 +137,7 @@ The next tasks to do are:
     * Detach the CIP payload from the ENIP analyzer
     * Continue to write the cip-protocol, cip-analyser and events.bif in
       order to analyse all the CIP packets according to CIP Volume I
-    * [Optional] Change main.bro in order to log different information
+    * [Optional] Change main.zeek in order to log different information
     * [Optional] Add some policy script in order to detect some CIP attacks
 
 ## Detecting attacks ##
